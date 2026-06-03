@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage("clone") {
+            steps {
+                git "https://github.com/Baisalov24/testproject1.git"
+            }
+
+        }
+        stage ("Build image") {
+            steps {
+                sh 'docker build -t html-app:latest .'
+            }
+        }
+        stage ("Deploy") {
+            steps {
+                sh '''
+                docker stop html-app || true
+                docker rm html-app || true
+
+                docker run -d \
+                  --name html-app \
+                  -p 8080:80 \
+                  html-app:latest
+                '''
+            }
+        }
+    }
+}
