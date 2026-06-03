@@ -20,9 +20,9 @@ pipeline {
                 docker stop html-app || true
                 docker rm html-app || true
 
-                docker run -d \
-                  --name html-app \
-                  -p 8080:80 \
+                docker run -d \\
+                  --name html-app \\
+                  -p 8081:80 \\
                   html-app:latest
                 '''
             }
