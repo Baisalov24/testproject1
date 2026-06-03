@@ -5,7 +5,7 @@ pipeline {
 
         stage("clone") {
             steps {
-                git "https://github.com/Baisalov24/testproject1.git"
+                git credentialsId: "github-token-cred", url: "https://github.com/Baisalov24/testproject1.git", branch: 'main'
             }
 
         }
